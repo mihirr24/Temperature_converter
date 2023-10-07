@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temperature Converter</title>
+  <link  href="second.css" rel="stylesheet">
+</head>
+<body>
+<div class="box">
+  <h1>Temperature Converter</h1>
+
+  <div class="item">
+  <label for="celsius">Enter The Value of Celsius:</label>
+  <input type="number" id="celsius"  oninput="convert('celsius')">
+  <div class="line"></div>
+  </div>
+  <div class="item">
+  <label for="fahrenheit">Enter The Value of Fahrenheit:</label>
+  <input type="number" id="fahrenheit"  oninput="convert('fahrenheit')">
+  <div class="line"></div>
+</div>
+<div class="item">
+  <label for="kelvin">Enter The Value of kelvin:</label>
+  <input type="number" id="kelvin"  oninput="convert('kelvin')">
+  <div class="line"></div>
+</div>
+</div>
+
+  <script>
+    function convert(source) {
+      if (source === 'celsius') {
+        // Convert Celsius to Fahrenheit and Kelvin
+        const celsius = parseFloat(document.getElementById('celsius').value);
+        const fahrenheit = (celsius * 9/5) + 32;
+        const kelvin = celsius + 273.15;
+
+        document.getElementById('fahrenheit').value = isNaN(fahrenheit) ? '' : fahrenheit;
+        document.getElementById('kelvin').value = isNaN(kelvin) ? '' : kelvin;
+
+      } else if (source === 'fahrenheit') {
+        // Convert Fahrenheit to Celsius and Kelvin
+        const fahrenheit = parseFloat(document.getElementById('fahrenheit').value);
+        const celsius = (fahrenheit - 32) * 5/9;
+        const kelvin = (fahrenheit - 32) * 5/9 + 273.15;
+
+        document.getElementById('celsius').value = isNaN(celsius) ? '' : celsius;
+        document.getElementById('kelvin').value = isNaN(kelvin) ? '' : kelvin;
+
+      } else if (source === 'kelvin') {
+        // Convert Kelvin to Celsius and Fahrenheit
+        const kelvin = parseFloat(document.getElementById('kelvin').value);
+        const celsius = kelvin - 273.15;
+        const fahrenheit = (kelvin - 273.15) * 9/5 + 32;
+
+        document.getElementById('celsius').value = isNaN(celsius) ? '' : celsius;
+        document.getElementById('fahrenheit').value = isNaN(fahrenheit) ? '' : fahrenheit;
+      }
+    }
+  </script>
+
+</body>
+</html>
