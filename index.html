@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="heading">ToDo App</h1>
+    <div class="main">
+    <input id="todo-text" type="text" placeholder="Enter Your ToDo">
+    <input id="todo-date" type="date">
+    <button id="todo-add" onclick="addtodo()">Add</button>
+    </div>
+    <div id="dis"></div>
+
+    <script>
+        
+        let arr = [
+            { 
+            }
+            
+        ];
+               display();
+        function addtodo() {
+            let input = document.querySelector('#todo-text')
+            let date = document.querySelector('#todo-date')
+            arr.push({inp:input.value,date:date.value});
+            input.value='';
+            date.value='';
+
+            display();
+        }
+       
+        function display() {
+
+            let d=document.querySelector('#dis');
+            let newHtml = '';
+            for(let i=0; i <arr.length;i++)
+            {
+                let todo=arr[i].inp;
+                let da = arr[i].date;
+                
+               newHtml += `
+               <div class="main">
+                <div class ="c1">${todo}</div>
+                <div class="c2">${da}</div>
+                <button class="btn" onclick="arr.splice(${i},1);
+                display();">Delete</button>
+                </div>
+               `
+               ;
+            }
+                d.innerHTML=newHtml;
+        }
+
+
+
+
+
+    </script>
+</body>
+
+</html>
